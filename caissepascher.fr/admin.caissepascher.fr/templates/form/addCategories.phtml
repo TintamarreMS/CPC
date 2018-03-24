@@ -1,0 +1,92 @@
+<?php require __DIR__."/../menu.phtml" ?>
+                <!-- Breadcrumb-->
+                <ul class="breadcrumb">
+                    <div class="container-fluid">
+                        <li class="breadcrumb-item"><a href="/dashboard">Accueil</a></li>
+                        <li class="breadcrumb-item"><a href="/categories">Catégories</a></li>
+                        <li class="breadcrumb-item active">Nouvelle catégorie</li>
+                    </div>
+                </ul>
+                <!-- Forms Section-->
+                <section class="forms">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <!-- Form Elements -->
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-close">
+                                        <div class="dropdown">
+                                            <button type="button" id="closeCard" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-ellipsis-v"></i></button>
+                                            <div aria-labelledby="closeCard" class="dropdown-menu has-shadow">
+                                                <a href="#" id="employeeSupprimer" class="dropdown-item"> <i class="fa fa-times"></i>Supprimer</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-header d-flex align-items-center">
+                                        <h3 class="h4">Ajout d'une nouvelle catégorie</h3>
+                                    </div>
+                                    <div class="card-body">
+                                        <form class="form-horizontal" method="POST">
+                                            <div class="form-group row">
+                                                <label class="col-sm-3 form-control-label">Nom de la catégorie</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" id="label" name="label" value="" parceholder="Entrez le nom de votre catégorie" class="form-control"/>
+                                                </div>
+                                            </div>
+                                            <div class="line"></div>
+                                          
+                                            <div class="form-group row">
+                                                <div class="col-sm-4 offset-sm-3">
+                                                    <a href="/categories" class="btn btn-secondary">Annuler</a>
+                                                    <button type="submit" class="btn btn-primary">Enregistrer</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            <?php require __DIR__."/../footer.phtml" ?>
+
+<script>
+  $(".form-horizontal").validate({
+
+    rules: {
+
+        label: {
+                    required: true,
+            },
+
+      },
+    
+    messages: {
+        label:{
+                      required: "Entrer le nom",
+        }, 
+        
+    },
+    
+    
+    submitHandler: function(form, event)
+    { 
+       event.preventDefault();
+        form.submit();
+
+    },
+ 
+    
+
+    errorElement : 'div',
+    errorPlacement: function(error, element) {
+      var placement = $(element).data('error');
+      if (placement) {
+        $(placement).append(error)
+      } else {
+        error.insertAfter(element);
+      }
+    }
+ });
+  
+  </script> 

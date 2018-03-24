@@ -1,0 +1,55 @@
+  <?php require __DIR__."/header.phtml" ?>
+  <body>
+    <div class="page login-page">
+      <div class="container d-flex align-items-center">
+        <div class="form-holder has-shadow">
+          <div class="row">
+            <!-- Logo & Information Panel-->
+            <div class="col-lg-5">
+              <div class="info d-flex align-items-center">
+                <div class="content">
+                  <div class="logo">
+                    <h1>Dashboard</h1>
+                  </div>
+                  <p>Caisse pas cher Administration</p>
+                </div>
+              </div>
+            </div>
+            <!-- Form Panel    -->
+            <div class="col-lg-7 bg-white">
+              <div class="form d-flex align-items-center">
+                <div class="content">
+                  <form id="login-form" method="post" action="/login">
+                    <div class="form-group">
+                      <input id="login-username" type="text" name="loginUsername" required="" class="input-material">
+                      <label for="login-username" class="label-material">Identifiant</label>
+                    </div>
+                    <div class="form-group">
+                      <input id="login-password" type="password" name="loginPassword" required="" class="input-material">
+                      <label for="login-password" class="label-material">Mot de passe</label>
+                    </div>
+                    <p style="color:red" id="errorLogin"></p>
+                    <button type="submit" id="login" href="index.html" class="btn btn-primary">Connexion</button>
+                    <!-- This should be submit button but I replaced it with <a> for demo purposes-->
+                  </form><a href="#" class="forgot-pass">Mots de passe oubliez?</a><br><small>Vous n'avez pas de compte? </small><a href="/register" class="signup">S'enregistrer</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="copyrights text-center">
+        <!-- Please do not remove the backlink to us unless you support further theme's development at https://bootstrapious.com/donate. It is part of the license conditions. Thank you for understanding :)-->
+      </div>
+    </div>
+    <!-- Javascript files-->
+    <script src="<?= DOMAINE ?>js/jquery.min.js"></script>
+    <script src="<?= DOMAINE ?>js/tether.min.js"></script>
+    <script src="<?= DOMAINE ?>js/bootstrap.min.js"></script>
+    <script src="<?= DOMAINE ?>js/jquery.cookie.js"> </script>
+    <script src="<?= DOMAINE ?>js/jquery.validate.min.js"></script>
+    <script src="<?= DOMAINE ?>js/front.js"></script>
+    <script src="<?= DOMAINE ?>js/lyknoledge.js"></script>
+
+  </body>
+</html>

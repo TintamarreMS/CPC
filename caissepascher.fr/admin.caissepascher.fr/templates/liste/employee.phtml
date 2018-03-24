@@ -1,0 +1,109 @@
+<?php require __DIR__."/../menu.phtml" ?>
+                <!-- Breadcrumb-->
+                <ul class="breadcrumb">
+                    <div class="container-fluid">
+                        <li class="breadcrumb-item"><a href="/dashboard">Accueil</a></li>
+                        <li class="breadcrumb-item active">Employés</li>
+                    </div>
+                </ul>
+                <section class="tables">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-close">
+                                        <div class="dropdown">
+                                            <button type="button" id="closeCard" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-ellipsis-v"></i></button>
+                                            <div aria-labelledby="closeCard" class="dropdown-menu has-shadow">
+                                                <!-- <a href="/dashboard" class="dropdown-item remove"> <i class="fa fa-times"></i>Close</a> -->
+                                                <a href="/employee-add" class="dropdown-item"> <i class="fa fa-gear"></i>Ajouter employé</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                    
+                                    <div id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" class="modal fade text-left" style="display: none;" aria-hidden="true">
+                                        <div role="document" class="modal-dialog" style=" margin-top: 10%; ">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                            <h4 id="exampleModalLabel" class="modal-title">Suppression</h4>
+                                            <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                                            </div>
+                                            <div class="modal-body">
+                                            <p>Êtes-vous sûr de vouloir supprimer cet employé ?</p>
+                                            <input type="hidden" id="emptodel" name="emptodel" value=""/>
+                                            </div>
+                                            <div class="modal-footer">
+                                            <button type="button" data-dismiss="modal" class="btn btn-secondary">Non</button>
+                                            <button type="button" class="btn btn-primary" onclick="DeleteEmployee();">Oui</button>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                    
+                                    
+                                    <div class="card-header d-flex align-items-center">
+                                        <h3 class="h4">Liste des employés</h3>
+                                    </div>
+                                    <div class="card-body">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <?php foreach($employees[0] as $key => $val):
+                                                        if($key == "idEmployee")
+                                                            continue;
+                                                        elseif($key == "firstname")
+                                                            $key = "Nom";
+                                                        elseif($key == "lastname")
+                                                            $key = "Prénom";
+                                                        elseif($key == "isActive")
+                                                            $key = "Actif";
+                                                        elseif($key == "created")
+                                                            $key = "Date de création"; ?>
+                                                    <th>
+                                                        <?= $key ?>
+                                                    </th>
+                                                    <?php endforeach; ?>
+                                                </tr>
+                                            </thead>
+                                            <?php foreach($employees as $employee): ?>
+                                            <tbody>
+                                                <tr <?= ($employee["isActive"] != 1)?"background-color: orangered;":""?> >
+                                                    <?php   
+                                                        foreach($employee as $key => $val):
+                                                            if($key == "idEmployee")
+                                                                continue;?>
+                                                    <td>
+                                                        <?php if($val=='0')     echo "non";
+                                                              elseif($val=='1') echo "oui";
+                                                              else  echo $val; 
+                                                        ?>
+                                                    </td>
+                                                    <?php endforeach; ?>
+                                                    <th>
+                                                        <a href="/employee/<?= $employee['idEmployee'] ?>" class="btn btn-primary">Détail</a>
+                                                        <a  href="#" data-toggle="modal" data-target="#myModal" class="btn btn-warning" onclick="$('#emptodel').val('<?=$employee['idEmployee']?>');">Supprimer</a>
+                                                     
+                                                       
+                                                    </th>
+                                                </tr>
+                                            </tbody>
+                                            <?php endforeach; ?>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+<script>
+function DeleteEmployee(){
+    var Id = $('#emptodel').val();
+    location.href = '/employee-delete/'+Id;
+}
+
+</script>
+            <?php require __DIR__."/../footer.phtml" ?>

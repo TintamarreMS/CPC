@@ -1,0 +1,237 @@
+.login-panel {
+  transition: box-shadow .25s;
+  padding: 24px;
+  margin: 0.5rem 0 1rem 0;
+  border-radius: 2px;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+  background-color: #fff;
+}
+
+.nav-login{
+    position: relative;
+    line-height: normal;
+}
+
+.tablogin li{
+   border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.navbar-color{
+    background-color: #3F51B5;
+}
+
+.login-error-message{
+    font-size: .8em;
+    position: relative;
+    left:5%;
+    top: 0;
+    color: red;
+   
+}
+
+.cd-cart{
+    width:100%;
+
+}
+
+
+.cd-cart .body ul {
+  overflow: hidden;
+  padding-top: 10px;
+  position: relative;
+  padding-bottom: 20px;
+   list-style: none;
+}
+
+.cd-cart .body ul li{
+    
+    width:100%;
+    display: table; 
+    list-style: none;
+}
+
+.bodyPay ul li{
+    
+    width:100%;
+    display: table; 
+    list-style: none;
+}
+
+.pricecart,
+.eurocart,
+.price,
+.euro{
+    font-size: 1.3em;
+    font-weight: bold;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.price{
+    text-align: right;
+    
+}
+
+.pricecart{
+  width: 10%;  
+  text-align: right;
+}
+
+
+.spanimg{
+    width:5%;
+}
+
+.euro{
+    text-align: left;
+}
+
+.eurocart{
+    text-align: left;
+    width: 20%;
+
+}
+
+
+.delete{
+    position: relative;
+    float: right;
+    display: table-cell;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+.name{
+    position: relative;
+    margin-left: 2px;
+    display: table-cell;
+    vertical-align: middle;
+    font-size: 1.1em;
+    text-align: left;
+    width: 60%;
+    
+}
+
+.namecart{
+    position: relative;
+    margin-left: 2px;
+    display: table-cell;
+    vertical-align: middle;
+    font-size: 1.1em;
+    text-align: left;
+    width: 60%;
+    
+}
+
+
+.sidebar-collapse1 {
+   position: absolute;
+  left: 15px;
+  top: -50px;
+}
+
+
+.sidebar-collapse2 {
+  position: absolute;
+  left: 70px;
+  top: -50px;
+}
+
+.sidebar-collapse3 {
+  position: absolute;
+  left: 125px;
+  top: -50px;
+}
+
+.sidebar-collapse4 {
+  position: absolute;
+  left: 175px;
+  top: -50px;
+}
+
+.client{
+    position: relative;
+    left: 20%;
+}
+
+
+.hidden{
+    visibility: hidden;
+}
+
+
+.totalttc,
+.totalht,
+.totalttcf,
+.totalhtf{
+   font-size: 1.2em; 
+   width: 90%;
+}
+
+.europart,
+.ttcprice,
+.htprice,
+.ttcpricef,
+.htpricef{
+     font-size: 1.1em;
+    font-weight: bold;
+}
+
+#rowtotalttcf{
+    display: none;
+}
+
+
+
+.prixpart{
+    text-align: right;
+    font-size:5em;
+    font-weight: bold;
+}
+
+
+.mb-p{
+    left: 0;
+}
+.mb-p1{
+    left: 0;
+    font-size: 0.7em;
+}
+
+.select_ticket{
+    width: 50%;
+    margin-left: 0;
+    
+    
+}
+
+.rowp{
+    display: inline-block;
+    width: 100%;
+}
+
+
+
+#paypart1,
+#paypart2{
+    width: 40%;
+    font-size: 1.5em;
+    font-weight: bold;
+    text-align: right;
+    color: #000;
+}
+
+.europart1,
+.europart2{
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+
+.send-right{
+    float: right;
+}
+
+
+
+

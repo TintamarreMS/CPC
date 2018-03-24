@@ -1,0 +1,116 @@
+<?php require __DIR__."/../menu.phtml" ?>
+                <!-- Breadcrumb-->
+                <ul class="breadcrumb">
+                    <div class="container-fluid">
+                        <li class="breadcrumb-item"><a href="/dashboard">Accueil</a></li>
+                        <li class="breadcrumb-item active">Produits & services</li>
+                    </div>
+                </ul>
+                <section class="tables">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-close">
+                                        <div class="dropdown">
+                                            <button type="button" id="closeCard" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-ellipsis-v"></i></button>
+                                            <div aria-labelledby="closeCard" class="dropdown-menu has-shadow">
+                                                <!-- <a href="/dashboard" class="dropdown-item remove"> <i class="fa fa-times"></i>Close</a> -->
+                                                <a href="/product-add" class="dropdown-item"> <i class="fa fa-gear"></i>Ajouter produit/service</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                    <div id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" class="modal fade text-left" style="display: none;" aria-hidden="true">
+                                        <div role="document" class="modal-dialog" style=" margin-top: 10%; ">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                            <h4 id="exampleModalLabel" class="modal-title">Suppression</h4>
+                                            <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                                            </div>
+                                            <div class="modal-body">
+                                            <p>Êtes-vous sûr de vouloir supprimer ce produit ?</p>
+                                            <input type="hidden" id="pdttodel" name="pdttodel" value=""/>
+                                            </div>
+                                            <div class="modal-footer">
+                                            <button type="button" data-dismiss="modal" class="btn btn-secondary">Non</button>
+                                            <button type="button" class="btn btn-primary" onclick="DeletePdt();">Oui</button>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    <div class="card-header d-flex align-items-center">
+                                        <h3 class="h4">Liste des produits & services</h3>
+                                    </div>
+                                    <div class="card-body">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <?php foreach($products[0] as $key => $val):
+                                                        if($key == "Id")
+                                                            continue;
+                                                        elseif($key == "label")
+                                                            $key = "Dénomination";
+                                                        elseif($key == "Tax")
+                                                            $key = "TVA";
+                                                        elseif($key == "isActive")
+                                                            $key = "Actif";
+                                                        elseif($key == "created")
+                                                            $key = "Date de création";
+                                                        elseif($key == "categorie")
+                                                            $key = "Catégorie"; ?>
+                                                    <th>
+                                                        <?= $key ?>
+                                                    </th>
+                                                    <?php endforeach; ?>
+                                                </tr>
+                                            </thead>
+                                            <?php foreach($products as $product): ?>
+                                            <tbody>
+                                                <tr>
+                                                    <?php   
+                                                        foreach($product as $key => $val):
+                                                            if($key == "Id")
+                                                                continue; ?>
+                                                    <td>
+                                                          <?php if($key == "Prix"){echo $val."€";}
+                                                          elseif($key == "Tax"){echo $val."%";}
+                                                          elseif($key == "isActive"){if($val=='1') echo "Oui"; else echo "Non";}
+                                                          else{echo $val;} ?>
+                                                    </td>
+                                                    <?php endforeach; ?>
+                                                    <th>
+                                                        <a href="/product/<?= $product['Id'] ?>" class="btn btn-primary">Détail</a>
+                                                        <?php 
+                                                           if($product['isActive'] == '1') 
+                                                             echo '<a  href="/product-disactivate/'.$product['Id'].'"  class="btn btn-warning">Désactiver</a>';
+                                                           else
+                                                            echo '<a  href="/product-activate/'.$product['Id'].'"  class="btn btn-warning">Activer</a>';
+                                                        ?>
+                                                        
+                                                    </th>
+                                                </tr>
+                                            </tbody>
+                                            <?php endforeach; ?>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+<script>
+function DeletePdt(){
+    var Id = $('#pdttodel').val();
+    location.href = '/product-delete/'+Id;
+}
+
+</script>
+            <?php require __DIR__."/../footer.phtml" ?>

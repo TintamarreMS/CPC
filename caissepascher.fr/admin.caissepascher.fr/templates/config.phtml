@@ -1,0 +1,115 @@
+<?php require __DIR__."/menu.phtml" ?>
+<!-- Dashboard Counts Section -->
+<section class="dashboard-counts no-padding-bottom">
+    <div class="container-fluid">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header d-flex align-items-center">
+                    <h3 class="h4">Configuration du profil</h3>
+                </div>
+                <div class="card-body">
+                    <form class="form-horizontal" method="POST">
+                        <div class="form-group row">
+                            <label class="col-sm-3 form-control-label">Nom</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" name="firstname" value="<?= $theUser['firstname'] ?>">
+                            </div>
+                        </div>
+                        <div class="line"></div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 form-control-label">Prénom</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" name="lastname" value="<?= $theUser['lastname'] ?>">
+                            </div>
+                        </div>
+                        <div class="line"></div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 form-control-label">Compagnie</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" name="compagny_name" value="<?= $theUser['compagny_name'] ?>">
+                            </div>
+                        </div>
+                        <div class="line"></div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 form-control-label">Siret</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" name="siret" value="<?= $theUser['siret'] ?>">
+                            </div>
+                        </div>
+                        <div class="line"></div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 form-control-label">Adresse</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" name="street" value="<?= $theUser['street'] ?>">
+                            </div>
+                        </div>
+                        <div class="line"></div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 form-control-label">Code postal</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" name="zipcode" value="<?= $theUser['zipcode'] ?>">
+                            </div>
+                        </div>
+                        <div class="line"></div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 form-control-label">Ville</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" name="city" value="<?= $theUser['city'] ?>">
+                            </div>
+                        </div>
+                        <div class="line"></div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 form-control-label">Moyens de paiement :</label>
+                            <div class="col-sm-9 offset-sm-3 select">
+                                <select multiple="" class="form-control">
+
+                                <?php foreach( $paymentMeans as $paymentMean): ?>
+                                        <option value="<?= $paymentMean["UserConfigs_has_PaymentMean_Id"] ?>"><?= utf8_decode($paymentMean["PaymentLabel"]) ?></option>
+                                <?php endforeach; ?>
+                                  </select>
+                            </div>
+                        </div>
+                        <div class="line"></div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 form-control-label">Système d'impression <br><small class="text-primary">En cours de développement</small></label>
+                            <div class="col-sm-9">
+                                <div>
+                                    <input id="impression" type="radio" checked="" value="1" name="impression">
+                                    <label for="optionsRadios1">Impression systématique</label>
+                                </div>
+                                <div>
+                                    <input id="impression" type="radio" value="2" name="impression">
+                                    <label for="optionsRadios2">Demande du ticket de caisse</label>
+                                </div>
+                            </div>
+                        </div>
+                       <!--
+                        <div class="line"></div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 form-control-label">Couleur BackOffice</label>
+                            <div class="col-sm-9">
+                                <input type="color" class="form-control" value="<?= $theUser['color_back'] ?>" name="color_back" style=" width: 10%; height: 150%; ">
+                            </div>
+                        </div>
+                        <div class="line"></div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 form-control-label">Couleur Caisse</label>
+                            <div class="col-sm-9">
+                                <input type="color" value="<?= $theUser['color_caisse'] ?>" class="form-control" name="color_caisse" style=" width: 10%; height: 150%; ">
+                            </div>
+                        </div>
+                        
+                        -->
+                        <div class="line"></div>
+                        <div class="form-group row">
+                            <div class="col-sm-4 offset-sm-3">
+                                <button type="submit" class="btn btn-primary">Enregistrer</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<?php require __DIR__."/footer.phtml" ?>

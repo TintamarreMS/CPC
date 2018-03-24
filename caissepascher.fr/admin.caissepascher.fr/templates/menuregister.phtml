@@ -1,0 +1,47 @@
+<?php require __DIR__."/header.phtml" ?>
+<div class="page home-page">
+      <!-- Main Navbar-->
+      <header class="header">
+        <nav class="navbar">
+          <div class="container-fluid">
+            <div class="navbar-holder d-flex align-items-center justify-content-between">
+              <!-- Navbar Header-->
+              <div class="navbar-header">
+                <!-- Navbar Brand --><span class="navbar-brand">
+                  <div class="brand-text brand-big hidden-lg-down"><span>Caisse </span><strong>pas Cher</strong></div>
+                  <div class="brand-text brand-small"><strong>CPC</strong></div></span>
+                <!-- Toggle Button--><a id="toggle-btn" href="#" class="menu-btn active"><span></span><span></span><span></span></a>
+              </div>
+              <!-- Navbar Menu -->
+              <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
+                <!-- Logout    -->
+                <li class="nav-item"><a href="/logout" class="nav-link logout">Logout<i class="fa fa-sign-out"></i></a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </header>
+      <div class="page-content d-flex align-items-stretch">
+        <!-- Side Navbar -->
+        <nav class="side-navbar">
+          <!-- Sidebar Header-->
+          <div class="sidebar-header d-flex align-items-center">
+            <div class="title">
+              <h1 class="h4"><?= $user["firstname"]." ".$user["lastname"] ?></h1>
+              <p><?= $user["compagny_name"] ?></p>
+            </div>
+          </div>
+          
+          <ul class="list-unstyled">
+            <li class="active"> <a href="/register-list"><i class="icon-list"></i>Mes clients</a></li>
+            <li class="active"> <a href="/register"><i class="icon-user"></i>Nouveau client</a></li>
+            <li class="active"> <a href="/profil"><i class="icon-clock"></i>Profil</a></li>
+         </ul>
+        </nav>
+        <div class="content-inner">
+          <!-- Page Header-->
+          <header class="page-header">
+            <div class="container-fluid">
+              <h2 class="no-margin-bottom"></h2>
+            </div>
+          </header>

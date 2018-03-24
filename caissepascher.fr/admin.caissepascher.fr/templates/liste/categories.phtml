@@ -1,0 +1,105 @@
+<?php require __DIR__."/../menu.phtml" ?>
+<?php $arrayKey = array(); ?>
+                <!-- Breadcrumb-->
+                <ul class="breadcrumb">
+                    <div class="container-fluid">
+                        <li class="breadcrumb-item"><a href="/dashboard">Accueil</a></li>
+                        <li class="breadcrumb-item active">Catégories</li>
+                    </div>
+                </ul>
+                <section class="tables">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-close">
+                                        <div class="dropdown">
+                                            <button type="button" id="closeCard" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-ellipsis-v"></i></button>
+                                            <div aria-labelledby="closeCard" class="dropdown-menu has-shadow">
+                                                <!-- <a href="/dashboard" class="dropdown-item remove"> <i class="fa fa-times"></i>Close</a> -->
+                                                <a href="/categories-add" class="dropdown-item"> <i class="fa fa-gear"></i>Ajouter une catégorie</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                    <div id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" class="modal fade text-left" style="display: none;" aria-hidden="true">
+                                        <div role="document" class="modal-dialog" style=" margin-top: 10%; ">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                            <h4 id="exampleModalLabel" class="modal-title">Suppression</h4>
+                                            <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                                            </div>
+                                            <div class="modal-body">
+                                            <p>Êtes-vous sûr de vouloir supprimer cette catégorie ?</p>
+                                            <input type="hidden" id="cattodel" name="cattodel" value=""/>
+                                            </div>
+                                            <div class="modal-footer">
+                                            <button type="button" data-dismiss="modal" class="btn btn-secondary">Non</button>
+                                            <button type="button" class="btn btn-primary" onclick="DeleteCategorie();">Oui</button>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                    
+                                    
+                                    <div class="card-header d-flex align-items-center">
+                                        <h3 class="h4">Liste des catégories</h3>
+                                    </div>
+                                    <div class="card-body">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <?php foreach($categories[0] as $key => $val): ?>
+                                                    <?php if($key != "children"):?>                                                    
+                                                    <th>
+                                                        <?php 
+                                                              if($key == "idcategories") $key = "Id catégorie";
+                                                              if($key == "label") $key = "Nom catégorie";
+                                                         ?>
+                                                        <?php
+                                                        if($key != "faster")  echo $key; ?>
+                                                        
+                                                    </th>
+                                                    <?php endif;endforeach; ?>
+                                                </tr>
+                                            </thead>
+                                            <?php foreach($categories as $categorie): ?>
+                                            <?php $arrayKey[$categorie["idcategories"]] = $categorie["label"] ?>
+                                            <tbody>
+                                                <tr>
+                                                    <?php   foreach($categorie as $key => $val):
+                                                    if(($key != "children") && ($key != "faster")): ?>
+                                        
+                                                    <td><?= $val ?></td>
+                                                    <?php 
+
+                                                    endif;
+                                                    endforeach;?>
+                                                    <th>
+                                                        <a href="/categories/<?= $categorie['idcategories'] ?>" class="btn btn-primary">Editer</a>
+                                                       <!-- <a  href="#" data-toggle="modal" data-target="#myModal" class="btn btn-warning" onclick="$('#cattodel').val('<?=$categorie['idcategories']?>');">Supprimer</a> -->
+                                                     
+                                                    </th>
+                                                </tr>
+                                            </tbody>
+                                            <?php endforeach; ?>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+<script>
+function DeleteCategorie(){
+    var Id = $('#cattodel').val();
+    location.href = '/categories-delete/'+Id;
+
+}
+
+</script>
+            <?php require __DIR__."/../footer.phtml" ?>

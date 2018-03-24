@@ -1,0 +1,77 @@
+            <?php require __DIR__."/../menu.phtml" ?>
+                <!-- Breadcrumb-->
+                <ul class="breadcrumb">
+                    <div class="container-fluid">
+                        <li class="breadcrumb-item"><a href="/dashboard">Accueil</a></li>
+                        <li class="breadcrumb-item active">Transactions</li>
+                    </div>
+                </ul>
+                <section class="tables">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-close">
+                                        <div class="dropdown">
+                                            <button type="button" id="closeCard" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-ellipsis-v"></i></button>
+                                            <div aria-labelledby="closeCard" class="dropdown-menu has-shadow">
+                                                <!-- <a href="/dashboard" class="dropdown-item remove"> <i class="fa fa-times"></i>Close</a> -->
+                                                <a href="/transaction-csv" class="dropdown-item"> <i class="fa fa-gear"></i>Export Excel</a>
+                                                <a href="/transaction-text" class="dropdown-item"> <i class="fa fa-gear"></i>Export Text</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-header d-flex align-items-center">
+                                        <h3 class="h4">Table <?= $title ?></h3>
+                                    </div>
+                                    <div class="card-body">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <?php foreach($transactions[0] as $key => $val): ?>
+                                                    <th>
+                                                        <?php
+                                                               if($key=="id") echo "Id transaction";
+                                                               if($key=="reference") echo "id client";
+                                                               if($key=="amount") echo "montant";
+                                                               if($key=="status") echo "statut";
+                                                               if($key=="cancelled") echo "annulée";
+                                                               if($key=="employee") echo "employé";
+                                                               if($key=="created") echo "créée le";
+                                                               if($key=="updated") echo "modifée le";
+                                                        
+                                                         ?>
+                                                    </th>
+                                                    <?php endforeach; ?>
+                                                                                                   
+                                                </tr>
+                                            </thead>
+                                            <?php foreach($transactions as $transaction): ?>
+                                            <tbody>
+                                                <tr id="transaction<?= $transaction['id'] ?>">
+                                                    <?php foreach($transaction as $key => $val): ?>
+                                                    
+                                                    <td>
+                                                         <?php if($key == "cancelled")
+                                                        if($val == 0)$val = "Non";else $val="Oui"; ?>
+                                                        <?php if($key == "status") 
+                                                        if($val == "Annuler")  $val = "Annulée";
+                                                        if($val == "Terminer") $val = "Terminée"; ?>
+                                                       
+                                                        
+                                                        <?= $val ?> <?= ($key == "amount")?"€":"" ?>
+                                                    </td>
+                                                
+                                                    <?php endforeach; ?>
+                                                    
+                                                </tr>
+                                            </tbody>
+                                            <?php endforeach; ?>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            <?php require __DIR__."/../footer.phtml" ?>

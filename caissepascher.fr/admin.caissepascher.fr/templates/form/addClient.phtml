@@ -1,0 +1,139 @@
+<?php require __DIR__."/../menu.phtml" ?>
+                <!-- Breadcrumb-->
+                <ul class="breadcrumb">
+                    <div class="container-fluid">
+                        <li class="breadcrumb-item"><a href="/dashboard">Accueil</a></li>
+                        <li class="breadcrumb-item"><a href="/client">Clients</a></li>
+                        <li class="breadcrumb-item active">Nouveau client</li>
+                    </div>
+                </ul>
+                <!-- Forms Section-->
+                <section class="forms">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <!-- Form Elements -->
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-header d-flex align-items-center">
+                                        <h3 class="h4">Ajout d'un nouveau client</h3>
+                                    </div>
+                                    <div class="card-body">
+                                        <form class="form-horizontal" method="POST">
+                                            <div class="form-group row">
+                                                <label class="col-sm-2 form-control-label">Nom</label>
+                                                <div class="col-sm-7">
+                                                    <input type="text" name="firstname" value="" parceholder="Entrez le nom du client" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="line"></div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-2 form-control-label">Prénom</label>
+                                                <div class="col-sm-7">
+                                                    <input type="text" name="lastname" value="" parceholder="Entrez le prenom du client" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="line"></div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-2 form-control-label">Code Postal</label>
+                                                <div class="col-sm-7">
+                                                    <input type="text" name="postcode" value="" parceholder="Entrez le code postal du client" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="line"></div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-2 form-control-label">Email
+                                                </label>
+                                                <div class="col-sm-7">
+                                                    <input type="email" name="email" value="" parceholder="Entrez l'adresse email du client" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="line"></div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-2 form-control-label">Téléphone</label>
+                                                <div class="col-sm-7">
+                                                    <input type="tel" name="phonenumber" value="" parceholder="Entrez le numero de téléphone du client" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-4 offset-sm-3">
+                                                    <a href="/client" class="btn btn-secondary">Annuler</a>
+                                                    <button type="submit" class="btn btn-primary">Ajouter</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            <?php require __DIR__."/../footer.phtml" ?>
+            
+            
+ <script>
+  
+  
+  $(".form-horizontal").validate({
+
+    rules: {
+
+        firstname: {
+                    required: true,
+                    minlength:2,
+            },
+        lastname: {
+               required: true,
+                minlength:2,
+            },
+        postcode:{
+                    minlength:5, 
+        },
+            
+        email: {
+                email:true, 
+            },
+        
+        phonenumber:{
+            minlength:10,
+        }
+            
+        
+      },
+    
+    messages: {
+        firstname:{
+                      required: "Entrer le nom",
+                      minlength:"Minimum 2 caractères",
+        }, 
+        lastname: {
+                      required: "Entrer le  pr&eacute;nom",
+                      minlength:"Minimum 2 caractères",
+        },
+        
+        postcode : "Minimum 5 caractères",
+        email: "Entrer une adresse mail valide",
+        phonenumber: "Minimum 10 caractères",
+    },
+    
+    
+    submitHandler: function(form, event)
+    { 
+       event.preventDefault();
+        form.submit();
+
+    },
+ 
+    
+
+    errorElement : 'div',
+    errorPlacement: function(error, element) {
+      var placement = $(element).data('error');
+      if (placement) {
+        $(placement).append(error)
+      } else {
+        error.insertAfter(element);
+      }
+    }
+ });
+  
+  </script>   

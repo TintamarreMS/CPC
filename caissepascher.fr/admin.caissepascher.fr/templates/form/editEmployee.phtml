@@ -1,0 +1,163 @@
+<?php require __DIR__."/../menu.phtml" ?>
+                <!-- Breadcrumb-->
+                <ul class="breadcrumb">
+                    <div class="container-fluid">
+                        <li class="breadcrumb-item"><a href="/dashboard">Accueil</a></li>
+                        <li class="breadcrumb-item"><a href="/employee">Employés</a></li>
+                        <li class="breadcrumb-item active">
+                            <?= $employee['firstname'].' '.$employee['lastname'] ?>
+                        </li>
+                    </div>
+                </ul>
+                <!-- Forms Section-->
+                <section class="forms">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <!-- Form Elements -->
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-close">
+                                        <div class="dropdown">
+                                            <button type="button" id="closeCard" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-ellipsis-v"></i></button>
+                                            <div aria-labelledby="closeCard" class="dropdown-menu has-shadow">
+                                                <a data-toggle="modal" data-target="#myModal" id="clientSupprimer" class="dropdown-item"> <i class="fa fa-times"></i>Supprimer</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" class="modal fade text-left" style="display: none;" aria-hidden="true">
+                                        <div role="document" class="modal-dialog" style=" margin-top: 10%; ">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                            <h4 id="exampleModalLabel" class="modal-title">Suppression</h4>
+                                            <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                                            </div>
+                                            <div class="modal-body">
+                                            <p>Êtes-vous sûr de vouloir supprimer cet employé ?</p>
+                                            </div>
+                                            <div class="modal-footer">
+                                            <button type="button" data-dismiss="modal" class="btn btn-secondary">Non</button>
+                                            <button type="button" class="btn btn-primary">Oui</button>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-header d-flex align-items-center">
+                                        <h3 class="h4">Modification d'un employé</h3>
+                                    </div>
+                                    <div class="card-body">
+                                        <form class="form-horizontal" method="POST">
+                                            <?php foreach( $employee as $key => $val):
+                                                if($key == "idEmployee")
+                                                    $key = "Id client";
+                                                if($key == "firstname")
+                                                    $key = "Nom";
+                                                if($key == "lastname")
+                                                    $key = "Prénom";
+                                                 if($key == "created")
+                                                    $key = "crée le";
+                                                if($key == "isActive")
+                                                    $key = "Actif"; ?>
+                                            <div class="form-group row">
+                                                <label class="col-sm-3 form-control-label"><?= $key ?></label>
+                                                <?php
+                                                    if($key == "Id client")
+                                                        $key = "idEmployee";
+                                                    if($key == "Nom")
+                                                        $key = "firstname";
+                                                    if($key == "Prénom")
+                                                        $key = "lastname";
+                                                    if($key == "Actif")
+                                                        $key = "isActive";
+                                                     if($key == "crée le")
+                                                        $key = "created"; ?>
+                                                <?php if($key != "isActive"): ?>
+                                                <div class="col-sm-9">
+                                                    <input type="<?php echo (isset($type[$key]))?$type[$key]: 'text'; ?>" name="<?= $key ?>" <?php if($key == "idEmployee" || $key == "created"){echo 'disabled=""';} ?> value="<?= $val ?>" class="form-control">
+                                                </div>
+                                                <?php else: ?>
+                                                <div class="col-sm-9">
+                                                    <div>
+                                                        <select  id="isActive" name="isActive">
+                                                        <option value="0" <?php if($val == 0){echo 'selected';} ?>>Non</option>
+                                                        <option value="1" <?php if($val == 1){echo 'selected';} ?>>Oui</option>
+                                                        </select>
+                                                        
+                                                      <!--  <input id="isActive" type="ckeckbox" <?php if($val == 1){echo 'checked=""';} ?>  name="isActive">
+                                                        <label for="optionsRadios1">Activé</label>-->
+                                                    </div>
+                                                   <!-- <div>
+                                                        <input id="isActive" type="ckeckbox" <?php if($val != 1){echo 'checked=""';} ?> value="0" name="isActive">
+                                                        <label for="optionsRadios2">Désactivé</label>
+                                                    </div>
+                                                    -->
+                                                </div>
+                                                <?php endif; ?>
+                                            </div>
+                                            <div class="line"></div>
+                                            <?php endforeach; ?>
+                                            <div class="form-group row">
+                                                <div class="col-sm-4 offset-sm-3">
+                                                    <a href="/employee" class="btn btn-secondary">Annuler</a>
+                                                    <button type="submit" class="btn btn-primary">Modifier</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            <?php require __DIR__."/../footer.phtml" ?>
+            
+<script>
+$(".form-horizontal").validate({
+
+    rules: {
+
+        firstname: {
+               required: true,
+               minlength:2,
+            },
+        lastname: {
+               required: true,
+               minlength:2,
+            },
+            
+        
+        
+      },
+    
+    messages: {
+        firstname: {
+                      required: "Entrer le nom",
+                      minlength:"Minimum 2 caractères",  
+        },
+        lastname:{
+                      required: "Entrer le  pr&eacute;nom",
+                      minlength:"Minimum 2 caractères",
+        },
+    },
+    
+    
+    submitHandler: function(form, event)
+    { 
+       event.preventDefault();
+        form.submit();
+
+    },
+ 
+    
+
+    errorElement : 'div',
+    errorPlacement: function(error, element) {
+      var placement = $(element).data('error');
+      if (placement) {
+        $(placement).append(error)
+      } else {
+        error.insertAfter(element);
+      }
+    }
+ });
+  
+  </script> 
